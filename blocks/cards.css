@@ -9,6 +9,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
   justify-content: center;
+  align-items: center;
   column-gap: 20px;
   row-gap: 40px;
+}
+
+@media screen and (max-width= 627px) {
+  .cards__list {
+    grid-template-columns: repeat(auto-fit, 288px);
+  }
 }
