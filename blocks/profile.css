@@ -29,6 +29,7 @@
 }
 
 .profile__description {
+  opacity: 0.7;
   margin: 0;
   max-width: 413px;
   text-overflow: ellipsis;
