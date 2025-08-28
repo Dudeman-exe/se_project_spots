@@ -3,7 +3,7 @@
 }
 
 .card__image {
-  padding: 0 0 12px;
+  margin-bottom: 12px;
   height: 413px;
   width: 413px;
   object-fit: cover;
@@ -35,7 +35,7 @@
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .card__like-btn:hover {
@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 627px) {
   .card__title {
-    font-style: 16px;
+    font-size: 16px;
   }
 
   .card {
