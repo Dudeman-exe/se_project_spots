@@ -14,7 +14,7 @@
   row-gap: 40px;
 }
 
-@media screen and (max-width= 627px) {
+@media screen and (max-width: 627px) {
   .cards {
     padding-bottom: 20px;
   }
