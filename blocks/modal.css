@@ -1,7 +1,7 @@
 .modal {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+  transition: visibility 0.5s linear 0.5s, opacity 0.5s linear;
   background-color: #00000080;
   position: fixed;
   top: 0;
@@ -24,6 +24,7 @@
   max-width: 730px;
   width: 100%;
   border-radius: 8px;
+  box-sizing: border-box;
   background-color: #fff;
   padding: 32px 50px;
   position: relative;
@@ -31,6 +32,7 @@
 
 .modal__close-btn {
   border: none;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   margin: 0;
@@ -40,6 +42,11 @@
   right: 50px;
   opacity: 0.4;
   background-color: #fff;
+}
+
+.modal__close-btn:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .modal__title {
@@ -62,7 +69,7 @@
   display: block;
   margin: 8px 0 0;
   padding: 16px 0 12px 16px;
-  border: 1px;
+  border: 1px solid #21212166;
   border-radius: 8px;
   border-color: #21212166;
   width: 100%;
@@ -74,6 +81,7 @@
 }
 
 .modal__submit-btn {
+  cursor: pointer;
   border-radius: 8px;
   margin-right: auto;
   height: 52px;
@@ -81,7 +89,13 @@
   max-width: 156px;
   color: #fcf5e5;
   background-color: #212121;
+  opacity: 0.8;
   font-size: 16px;
+}
+
+.modal__submit-btn:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
