@@ -7,3 +7,8 @@
 
 - Here is the link to the breakdown recording:
   https://drive.google.com/file/d/10ZamQLguG6kN4FuVvbYny9460TIJ713E/view?usp=sharing
+
+### Improvements to be made:
+
+- the "new post" modal needs functionality. When a new post form is submitted, it will be able to add a new card displaying the image, via a url link, with a caption.
+- the like button needs functionality. When the user clicks the heart icon, it should change appearance to indicate that the user has "liked" the image/caption tied to it.
