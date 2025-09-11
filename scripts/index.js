@@ -53,7 +53,7 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-editProfileForm.addEventListener("submit", handleEditProfileSumbit);
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
