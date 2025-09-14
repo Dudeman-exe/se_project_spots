@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: "5-0 grind",
+    link: "https://unsplash.com/photos/person-doing-kick-flip-trick-eK_aInAXydw",
+  },
+  {
+    name: "Mise en place",
+    link: "https://unsplash.com/photos/person-slicing-vegetable-uB7q7aipU2o",
+  },
+  {
+    name: "Rock Concert",
+    link: "https://unsplash.com/photos/a-crowd-of-people-at-a-concert-with-their-hands-in-the-air--Ma-aFuivjs",
+  },
+  {
+    name: "Dungeons and Dragons session",
+    link: "https://unsplash.com/photos/red-dragon-action-figure-on-table-X-A-LJVAhzk",
+  },
+  {
+    name: "Gaming PC setup",
+    link: "https://unsplash.com/photos/black-flat-screen-computer-monitor-turned-on-beside-black-computer-keyboard-xxL1FavYOh0",
+  },
+  {
+    name: "Mountain Hiking",
+    link: "https://unsplash.com/photos/person-wearing-cap-across-mountains-5ErbZB4VY3M",
+  },
+];
+
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -61,5 +88,10 @@ function handleAddCardSubmit(evt) {
   console.log(newPostImageLinkInput.value, newPostCaptionInput.value);
   closeModal(newPostModal);
 }
+
+initialCards.forEach(function (item) {
+  console.log(item.name);
+  console.log(item.link);
+});
 
 addCardForm.addEventListener("submit", handleAddCardSubmit);
