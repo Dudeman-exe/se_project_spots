@@ -1,41 +1,59 @@
 const initialCards = [
   {
     name: "5-0 grind",
-    link: "https://unsplash.com/photos/person-doing-kick-flip-trick-eK_aInAXydw",
+    link: "https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
   {
     name: "Mise en place",
-    link: "https://unsplash.com/photos/person-slicing-vegetable-uB7q7aipU2o",
+    link: "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
   {
     name: "Rock Concert",
-    link: "https://unsplash.com/photos/a-crowd-of-people-at-a-concert-with-their-hands-in-the-air--Ma-aFuivjs",
+    link: "https://images.unsplash.com/photo-1692271931628-adc2b16670dd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
   {
     name: "Dungeons and Dragons session",
-    link: "https://unsplash.com/photos/red-dragon-action-figure-on-table-X-A-LJVAhzk",
+    link: "https://images.unsplash.com/photo-1549056572-75914d5d5fd4?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
   {
     name: "Gaming PC setup",
-    link: "https://unsplash.com/photos/black-flat-screen-computer-monitor-turned-on-beside-black-computer-keyboard-xxL1FavYOh0",
+    link: "https://images.unsplash.com/photo-1626218174358-7769486c4b79?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
   {
     name: "Mountain Hiking",
-    link: "https://unsplash.com/photos/person-wearing-cap-across-mountains-5ErbZB4VY3M",
+    link: "https://images.unsplash.com/photo-1547203928-d8c7cc83e56f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
 ];
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
+const editFormEl = editProfileModal.querySelector(".modal__form");
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const addCardForm = newPostModal.querySelector(".modal__form");
+const addCardFormEl = newPostModal.querySelector(".modal__form");
 const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 const newPostImageLinkInput = newPostModal.querySelector("#image-link-input");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+const cardLikeBtn = document.querySelector(".card__like-btn");
+
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+const cardList = document.querySelector(".card__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  return cardElement;
+}
 
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
@@ -80,18 +98,23 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+editFormEl.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  console.log("submitting");
-  console.log(newPostImageLinkInput.value, newPostCaptionInput.value);
+
+  const cardElement = getCardElement({
+    name: newPostCaptionInput.value,
+    link: newPostImageLinkInput.value,
+  });
+  cardList.append(cardElement);
+
   closeModal(newPostModal);
 }
 
 initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
+  const cardElement = getCardElement(item);
+  cardList.append(cardElement);
 });
 
-addCardForm.addEventListener("submit", handleAddCardSubmit);
+addCardFormEl.addEventListener("submit", handleAddCardSubmit);
