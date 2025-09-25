@@ -42,14 +42,14 @@
           <ul class="cards__list">
             <template id="card-template">
               <li class="card">
-                <img class="card__image" id="image-link-input" src="#" alt="" />
+                <img class="card__image" src="#" alt="" />
                 <button
                   type="button"
                   aria-label="delete button"
                   class="card__delete-btn"
                 ></button>
                 <div class="card__content">
-                  <h2 class="card__title" id="image-caption-input"></h2>
+                  <h2 class="card__title"></h2>
                   <button
                     type="button"
                     aria-label="like button"
@@ -115,6 +115,7 @@
                 type="url"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
+                required
               />
             </label>
             <label for="image-caption-input" class="modal__label">
@@ -124,6 +125,7 @@
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
+                required
               />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>

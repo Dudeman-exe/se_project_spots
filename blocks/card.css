@@ -14,6 +14,10 @@
   display: block;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__content {
   display: flex;
   align-items: center;
@@ -69,6 +73,7 @@
 
 .card__delete-btn:hover {
   background-image: url(../images/delete-btn_hover.svg);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
