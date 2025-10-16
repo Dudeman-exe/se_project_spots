@@ -105,10 +105,10 @@ previewModalCloseBtn.addEventListener("click", function () {
 profileEditBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  resetValidation(editProfileModal, [
-    editProfileNameInput,
-    editProfileDescriptionInput,
-  ]);
+  const inputList = Array.from(
+    editProfileModal.querySelectorAll(settings.inputSelector)
+  );
+  resetValidation(editProfileModal, inputList, settings);
   openModal(editProfileModal);
 });
 
@@ -146,7 +146,7 @@ function handleAddCardSubmit(evt) {
 
   closeModal(newPostModal);
   evt.target.reset();
-  disableButton(modalSubmitBtn);
+  disableButton(modalSubmitBtn, config);
 }
 
 initialCards.forEach(function (item) {
