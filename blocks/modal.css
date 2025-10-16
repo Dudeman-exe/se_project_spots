@@ -36,7 +36,7 @@
 
 .modal__image {
   max-width: 80vw;
-  max-height: 80vw;
+  max-height: 80vh;
   width: 100%;
   object-fit: contain;
   display: block;
@@ -90,7 +90,6 @@
 
 .modal__title {
   margin-top: 0;
-  margin-bottom: 32px;
   font-size: 32px;
 }
 
@@ -102,6 +101,8 @@
 .modal__label {
   margin: 0 0 32px;
   font-size: 16px;
+  margin-bottom: 32px;
+  display: block;
 }
 
 .modal__input {
@@ -117,6 +118,23 @@
 
 .modal__input::placeholder {
   color: #2121214d;
+  opacity: 30%;
+}
+
+.modal__input:hover {
+  border: 1px solid rgb(33, 33, 33);
+}
+
+.modal__input_type_error {
+  border: 1px solid #ff000099;
+  border-radius: 8px;
+}
+
+/* Style from Figma */
+.modal__error {
+  display: block;
+  color: #ff0000b2;
+  margin-top: 8px;
 }
 
 .modal__submit-btn {
@@ -135,6 +153,11 @@
 .modal__submit-btn:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.modal__submit-btn_state_disabled {
+  background-color: #212121;
+  opacity: 50%;
 }
 
 @media screen and (max-width: 627px) {
