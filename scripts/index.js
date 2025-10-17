@@ -164,7 +164,7 @@ function handleAddCardSubmit(evt) {
   const newPostSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
   closeModal(newPostModal);
   evt.target.reset();
-  disableButton(modalSubmitBtn, settings);
+  disableButton(newPostSubmitBtn, settings);
 }
 
 initialCards.forEach(function (item) {
