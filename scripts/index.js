@@ -92,7 +92,6 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 
 function handleEscape(evt) {
   if (evt.key === "Escape") {
-    document.querySelector(".modal_is-opened");
     const opnedModal = document.querySelector(".modal_is-opened");
     closeModal(opnedModal);
   }
