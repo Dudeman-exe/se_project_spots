@@ -1,5 +1,6 @@
 import "./index.css";
 import { enableValidation, settings } from "../scripts/validation.js";
+import Api from "../scripts/Api.js";
 
 const initialCards = [
   {
@@ -31,6 +32,22 @@ const initialCards = [
     link: "https://images.unsplash.com/photo-1547203928-d8c7cc83e56f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
   },
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "46747406-c2b0-48b7-b5f8-07dbde211dbd",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((cards) => {
+  console.log(cards);
+  cards.forEach(function (item) {
+    const cardElement = getCardElement(item);
+    cardsList.append(cardElement);
+  });
+});
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -168,10 +185,5 @@ function handleAddCardSubmit(evt) {
   evt.target.reset();
   disableButton(newPostSubmitBtn, settings);
 }
-
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
 
 enableValidation(settings);
