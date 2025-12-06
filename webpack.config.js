@@ -20,6 +20,7 @@ module.exports = {
     static: [
       path.resolve(__dirname, "./dist"),
       path.resolve(__dirname, "./src"),
+      path.resolve(__dirname, "./"),
     ],
     compress: true,
     port: 8080,

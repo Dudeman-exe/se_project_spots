@@ -1,6 +1,6 @@
 import "./index.css";
 import { enableValidation, settings } from "../scripts/validation.js";
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
   {

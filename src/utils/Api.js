@@ -1,6 +1,7 @@
 class Api {
-  constructor(options) {
-    // constructor body
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   getInitialCards() {
