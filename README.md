@@ -10,5 +10,4 @@
 
 ### Improvements to be made:
 
-- the "new post" modal needs functionality. When a new post form is submitted, it will be able to add a new card displaying the image, via a url link, with a caption.
-- the like button needs functionality. When the user clicks the heart icon, it should change appearance to indicate that the user has "liked" the image/caption tied to it.
+- The webpack and package.json files need to be corrected before any js changes are made.

@@ -7,18 +7,22 @@
     <meta name="author" content="Sean Semyck" />
     <meta name="keywords" content="Spots, Project, Social Media" />
     <link rel="stylesheet" type="text/css" href="./pages/index.css" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spot logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Bessie Coleman"
             class="profile__avatar"
           />
@@ -27,15 +31,18 @@
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
               <img
-                src="./images/edit-btn-icon.svg"
+                src="<%=require('./images/edit-btn-icon.svg')%>"
                 alt="pencil icon"
                 class="profile__edit-btn-icon"
               />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/addition-icon.svg" alt="Addition icon" /> New
-            Post
+            <img
+              src="<%=require('./images/addition-icon.svg')%>"
+              alt="Addition icon"
+            />
+            New Post
           </button>
         </section>
         <section class="cards page__section">
@@ -71,7 +78,7 @@
             aria-label="Close modal"
             class="modal__close-btn"
           >
-            <img src="./images/close-btn.svg" alt="Closing X" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
           </button>
           <h2 class="modal__title">Edit profile</h2>
           <form class="modal__form">
@@ -115,7 +122,7 @@
             aria-label="Close modal"
             class="modal__close-btn"
           >
-            <img src="./images/close-btn.svg" alt="Closing X" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
           </button>
           <h2 class="modal__title">New post</h2>
           <form class="modal__form">
@@ -154,7 +161,10 @@
             aria-label="Close modal"
             class="modal__close-btn modal__close-btn_type_preview"
           >
-            <img src="./images/close-btn-white.svg" alt="Close button" />
+            <img
+              src="<%=require('./images/close-btn-white.svg')%>"
+              alt="Close button"
+            />
           </button>
           <img src="#" alt="" class="modal__image" />
           <p class="modal__caption"></p>

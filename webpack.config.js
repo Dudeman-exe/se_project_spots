@@ -17,11 +17,7 @@ module.exports = {
   devtool: "inline-source-map",
   stats: "errors-only",
   devServer: {
-    static: [
-      path.resolve(__dirname, "./dist"),
-      path.resolve(__dirname, "./src"),
-      path.resolve(__dirname, "./"),
-    ],
+    static: path.resolve(__dirname, "./dist"),
     compress: true,
     port: 8080,
     open: true,
@@ -58,6 +54,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/images/favicon.ico",
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
