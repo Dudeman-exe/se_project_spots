@@ -1,5 +1,9 @@
 import "./index.css";
-import { enableValidation, settings } from "../scripts/validation.js";
+import {
+  resetValidation,
+  enableValidation,
+  settings,
+} from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
 const initialCards = [
@@ -41,13 +45,20 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((cards) => {
-  console.log(cards);
-  cards.forEach(function (item) {
-    const cardElement = getCardElement(item);
-    cardsList.append(cardElement);
+api
+  .getAppInfo()
+  .then(([cards, users]) => {
+    cards.forEach(function (item) {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+    users.forEach(function (item) {
+      //set src of avatar, and textContent of name and description
+    });
+  })
+  .catch((err) => {
+    console.error(err);
   });
-});
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -163,10 +174,18 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  console.log("submitting");
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((data) => {
+      // use "data" instead of hard coded input values
+      profileNameEl.textContent = data.name;
+      profileDescriptionEl.textContent = data.about;
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
 }
 
 editFormEl.addEventListener("submit", handleEditProfileSubmit);

@@ -21,11 +21,21 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <!--- errors started after addition of edit avatar btn (style after errors correction) -->
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./image/wht-pencil-icon.svg')%>"
+                alt="Edit Icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Bessie Coleman"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__title">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -171,5 +181,33 @@
         </div>
       </div>
     </div>
+    <!--- make corrections after error fix
+    <div class="modal" id="avatar-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            aria-label="Close modal"
+            class="modal__close-btn"
+          >
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
+          </button>
+          <h3 class="modal__title">Edit Avatar</h3>
+    <form class="modal__form" id="edit-avatar-form">
+      <label for="profile-avatar-input" class="modal__label">
+        Avatar
+        <input
+          id="profile-avatar-input"
+          type="url"
+          class="modal__input"
+          placeholder="Avatar goes here"
+          required
+        />
+        <span id="profile-avatar-input-error" class="modal__error"></span>
+      </label>
+      <button type="submit" class="modal__submit-btn">Save</button>
+    </form>
+  </div>
+</div>
+    -->
   </body>
 </html>
