@@ -78,12 +78,13 @@ const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 const newPostImageLinkInput = newPostModal.querySelector("#image-link-input");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 
-// Edit Avatar queries
-const avatarEditModal = document.querySelector("#avatar-modal");
+// Avatar queries
+const avatarImgEl = document.querySelector(".profile__avatar");
+const avatarEditForm = document.querySelector("#avatar-modal");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
-const avatarModalCloseBtn = avatarEditModal.querySelector(".modal__close-btn");
-const avatarModalSubmitBtn =
-  avatarEditModal.querySelector(".modal__submit-btn");
+const avatarModalCloseBtn = avatarEditForm.querySelector(".modal__close-btn");
+const avatarModalSubmitBtn = avatarEditForm.querySelector(".modal__submit-btn");
+const avatarSrcInput = avatarEditForm.querySelector(".modal__input");
 
 // Image Preview queries
 const previewModal = document.querySelector("#preview-modal");
@@ -123,17 +124,17 @@ function getCardElement(data) {
     openModal(previewModal);
   });
 
-  // TODO - closing EventListener, finish avatar selectors, validation, handleAvatarSubmit (check line 200)
-  avatarModalBtn.addEventListener("click", () => {
-    openModal(avatarEditModal);
-  });
-
-  avatarModalCloseBtn.addEventListener("click", () => {
-    closeModal(avatarEditModal);
-  });
-
   return cardEl;
 }
+
+// TODO - validation, handleAvatarSubmit (check handleAddCardSubmit)
+avatarModalBtn.addEventListener("click", () => {
+  openModal(avatarEditForm);
+});
+
+avatarModalCloseBtn.addEventListener("click", () => {
+  closeModal(avatarEditForm);
+});
 
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
@@ -212,6 +213,7 @@ function handleEditProfileSubmit(evt) {
 
 editFormEl.addEventListener("submit", handleEditProfileSubmit);
 addCardFormEl.addEventListener("submit", handleAddCardSubmit);
+avatarEditForm.addEventListener("submit", handleAvatarSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -225,6 +227,11 @@ function handleAddCardSubmit(evt) {
   closeModal(newPostModal);
   evt.target.reset();
   disableButton(newPostSubmitBtn, settings);
+}
+
+// TODO - Finish this function to complete Avatar Submit
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
 }
 
 enableValidation(settings);
