@@ -52,19 +52,25 @@ api
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
-    users.forEach(function (item) {
-      //set src of avatar, and textContent of name and description
+    // This forEach returns undefined? set src of avatar & textContent of name/description
+    users.forEach(function (user) {
+      const userAvatar = getUserInfo(user.avatar.src);
+      const userName = getUserInfo(user.name.textContent);
+      const userAbout = getUserInfo(user.about.textContent);
     });
   })
   .catch((err) => {
     console.error(err);
   });
 
+// Profile Edit queries
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editFormEl = editProfileModal.querySelector(".modal__form");
 const modalSubmitBtn = document.querySelector(".modal__submit-btn");
+
+// New Post queries
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const addCardFormEl = newPostModal.querySelector(".modal__form");
@@ -72,6 +78,11 @@ const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
 const newPostImageLinkInput = newPostModal.querySelector("#image-link-input");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 
+// Edit Avatar queries
+const avatarEditModal = document.querySelector("#avatar-modal");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+
+// Image Preview queries
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
@@ -107,6 +118,11 @@ function getCardElement(data) {
     previewImageEl.alt = data.name;
     previewCaptionEl.textContent = data.name;
     openModal(previewModal);
+  });
+
+  // TODO - closing EventListener, finish avatar selectors, validation, handleAvatarSubmit (check line 200)
+  avatarModalBtn.addEventListener("click", () => {
+    openModal(avatarEditModal);
   });
 
   return cardEl;
@@ -180,7 +196,6 @@ function handleEditProfileSubmit(evt) {
       about: editProfileDescriptionInput.value,
     })
     .then((data) => {
-      // use "data" instead of hard coded input values
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
       closeModal(editProfileModal);

@@ -6,7 +6,6 @@
     <meta name="description" content="Spots social media page project" />
     <meta name="author" content="Sean Semyck" />
     <meta name="keywords" content="Spots, Project, Social Media" />
-    <link rel="stylesheet" type="text/css" href="./pages/index.css" />
 
     <title>Spots</title>
   </head>
@@ -21,11 +20,11 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <!--- errors started after addition of edit avatar btn (style after errors correction) -->
+          <!-- Profile Avatar Edit button (24-37) -->
           <div class="profile__avatar-container">
             <button class="profile__avatar-btn">
               <img
-                src="<%=require('./image/wht-pencil-icon.svg')%>"
+                src="<%=require('./images/wht-pencil-icon.svg')%>"
                 alt="Edit Icon"
                 class="profile__pencil-icon"
               />
@@ -181,33 +180,28 @@
         </div>
       </div>
     </div>
-    <!--- make corrections after error fix
+    <!-- Below is modal for edit avatar. Needs validation and functionality. -->
     <div class="modal" id="avatar-modal">
-        <div class="modal__container">
-          <button
-            type="button"
-            aria-label="Close modal"
-            class="modal__close-btn"
-          >
-            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
-          </button>
-          <h3 class="modal__title">Edit Avatar</h3>
-    <form class="modal__form" id="edit-avatar-form">
-      <label for="profile-avatar-input" class="modal__label">
-        Avatar
-        <input
-          id="profile-avatar-input"
-          type="url"
-          class="modal__input"
-          placeholder="Avatar goes here"
-          required
-        />
-        <span id="profile-avatar-input-error" class="modal__error"></span>
-      </label>
-      <button type="submit" class="modal__submit-btn">Save</button>
-    </form>
-  </div>
-</div>
-    -->
+      <div class="modal__container">
+        <button type="button" aria-label="Close modal" class="modal__close-btn">
+          <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
+        </button>
+        <h3 class="modal__title">Edit Avatar</h3>
+        <form class="modal__form" id="edit-avatar-form">
+          <label for="profile-avatar-input" class="modal__label">
+            Avatar
+            <input
+              id="profile-avatar-input"
+              type="url"
+              class="modal__input"
+              placeholder="Avatar goes here"
+              required
+            />
+            <span id="profile-avatar-input-error" class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

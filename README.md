@@ -10,5 +10,4 @@
 
 ### Improvements to be made:
 
-- The webpack and package.json files need to be corrected before any js changes are made.
-- note the webkit in profile.css. These migth be the cause of MIME type error.
+- The edit avatar button and modal need validation and functionality. Some elements related still need selectors in index.js.
