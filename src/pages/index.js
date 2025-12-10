@@ -81,6 +81,9 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 // Edit Avatar queries
 const avatarEditModal = document.querySelector("#avatar-modal");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarModalCloseBtn = avatarEditModal.querySelector(".modal__close-btn");
+const avatarModalSubmitBtn =
+  avatarEditModal.querySelector(".modal__submit-btn");
 
 // Image Preview queries
 const previewModal = document.querySelector("#preview-modal");
@@ -123,6 +126,10 @@ function getCardElement(data) {
   // TODO - closing EventListener, finish avatar selectors, validation, handleAvatarSubmit (check line 200)
   avatarModalBtn.addEventListener("click", () => {
     openModal(avatarEditModal);
+  });
+
+  avatarModalCloseBtn.addEventListener("click", () => {
+    closeModal(avatarEditModal);
   });
 
   return cardEl;
