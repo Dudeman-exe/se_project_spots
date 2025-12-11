@@ -135,7 +135,7 @@
   margin-top: 8px;
 }
 
-.modal__submit-btn {
+.modal__btn {
   cursor: pointer;
   border-radius: 8px;
   margin-right: auto;
@@ -148,12 +148,12 @@
   font-size: 16px;
 }
 
-.modal__submit-btn:hover {
+.modal__btn:hover {
   opacity: 1;
   cursor: pointer;
 }
 
-.modal__submit-btn_state_disabled {
+.modal__btn_state_disabled {
   background-color: #212121;
   opacity: 50%;
 }
@@ -181,7 +181,7 @@
     font-size: 16px;
   }
 
-  .modal__submit-btn {
+  .modal__btn {
     margin: 0;
     max-width: 100%;
   }

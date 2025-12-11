@@ -37,6 +37,47 @@ const initialCards = [
   },
 ];
 
+// Profile Edit queries
+const profileEditBtn = document.querySelector(".profile__edit-btn");
+const editProfileModal = document.querySelector("#edit-profile-modal");
+const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
+const editFormEl = editProfileModal.querySelector(".modal__form");
+const modalSubmitBtn = document.querySelector(".modal__btn");
+const profileNameEl = document.querySelector(".profile__title");
+const profileDescriptionEl = document.querySelector(".profile__description");
+const editProfileNameInput = editProfileModal.querySelector(
+  "#profile-name-input"
+);
+const editProfileDescriptionInput = editProfileModal.querySelector(
+  "#profile-description-input"
+);
+
+// New Post queries
+const newPostBtn = document.querySelector(".profile__add-btn");
+const newPostModal = document.querySelector("#new-post-modal");
+const addCardFormEl = newPostModal.querySelector(".modal__form");
+const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
+const newPostImageLinkInput = newPostModal.querySelector("#image-link-input");
+const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+
+// Avatar queries
+const avatarImgEl = document.querySelector(".profile__avatar");
+const avatarEditForm = document.querySelector("#avatar-modal");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarModalCloseBtn = avatarEditForm.querySelector(".modal__close-btn");
+const avatarModalSubmitBtn = avatarEditForm.querySelector(".modal__btn");
+const avatarSrcInput = avatarEditForm.querySelector(".modal__input");
+
+// Image Preview queries
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaptionEl = previewModal.querySelector(".modal__caption");
+
+// Delete Modal queries
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -52,45 +93,13 @@ api
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
-    // This forEach returns undefined? set src of avatar & textContent of name/description
-    users.forEach(function (user) {
-      const userAvatar = getUserInfo(user.avatar.src);
-      const userName = getUserInfo(user.name.textContent);
-      const userAbout = getUserInfo(user.about.textContent);
-    });
+    profileNameEl.innerText = users.name;
+    profileDescriptionEl.innerText = users.about;
+    avatarImgEl.src = users.avatar;
   })
   .catch((err) => {
     console.error(err);
   });
-
-// Profile Edit queries
-const profileEditBtn = document.querySelector(".profile__edit-btn");
-const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editFormEl = editProfileModal.querySelector(".modal__form");
-const modalSubmitBtn = document.querySelector(".modal__submit-btn");
-
-// New Post queries
-const newPostBtn = document.querySelector(".profile__add-btn");
-const newPostModal = document.querySelector("#new-post-modal");
-const addCardFormEl = newPostModal.querySelector(".modal__form");
-const newPostCaptionInput = newPostModal.querySelector("#image-caption-input");
-const newPostImageLinkInput = newPostModal.querySelector("#image-link-input");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
-
-// Avatar queries
-const avatarImgEl = document.querySelector(".profile__avatar");
-const avatarEditForm = document.querySelector("#avatar-modal");
-const avatarModalBtn = document.querySelector(".profile__avatar-btn");
-const avatarModalCloseBtn = avatarEditForm.querySelector(".modal__close-btn");
-const avatarModalSubmitBtn = avatarEditForm.querySelector(".modal__submit-btn");
-const avatarSrcInput = avatarEditForm.querySelector(".modal__input");
-
-// Image Preview queries
-const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
-const previewImageEl = previewModal.querySelector(".modal__image");
-const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -113,8 +122,7 @@ function getCardElement(data) {
 
   const cardDeleteBtnEl = cardEl.querySelector(".card__delete-btn");
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardEl.remove();
-    cardEl = null;
+    openModal(deleteModal);
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -127,7 +135,7 @@ function getCardElement(data) {
   return cardEl;
 }
 
-// TODO - validation, handleAvatarSubmit (check handleAddCardSubmit)
+// TODO - validation
 avatarModalBtn.addEventListener("click", () => {
   openModal(avatarEditForm);
 });
@@ -136,14 +144,9 @@ avatarModalCloseBtn.addEventListener("click", () => {
   closeModal(avatarEditForm);
 });
 
-const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
-);
-const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
-);
-const profileNameEl = document.querySelector(".profile__title");
-const profileDescriptionEl = document.querySelector(".profile__description");
+deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
 
 function handleEscape(evt) {
   if (evt.key === "Escape") {
@@ -223,15 +226,21 @@ function handleAddCardSubmit(evt) {
     link: newPostImageLinkInput.value,
   });
   cardsList.prepend(cardElement);
-  const newPostSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
+  const newPostSubmitBtn = newPostModal.querySelector(".modal__btn");
   closeModal(newPostModal);
   evt.target.reset();
   disableButton(newPostSubmitBtn, settings);
 }
 
-// TODO - Finish this function to complete Avatar Submit
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+  api
+    .editAvatarImg({ avatar: avatarSrcInput.value })
+    .then((data) => {
+      avatarImgEl.src = data.avatar;
+    })
+    .catch(console.error);
+  closeModal(avatarEditForm);
 }
 
 enableValidation(settings);
