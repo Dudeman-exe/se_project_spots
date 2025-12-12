@@ -193,8 +193,11 @@ function handleDeleteCard(cardEl, cardId) {
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   api
-    .deleteCard()
-    .then(() => {})
+    .deleteCard(selectedCardId)
+    .then(() => {
+      // remove card from DOM
+      closeModal(deleteModal);
+    })
     .catch(console.error);
 }
 
@@ -251,6 +254,7 @@ function getCardElement(data) {
   return cardEl;
 }
 
+// Event Listners
 profileEditBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -261,6 +265,7 @@ profileEditBtn.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 editFormEl.addEventListener("submit", handleEditProfileSubmit);
 addCardFormEl.addEventListener("submit", handleAddCardSubmit);
 avatarEditForm.addEventListener("submit", handleAvatarSubmit);

@@ -14,3 +14,4 @@
 - Working on cleaner code, found starting project 9 that going through the old code which hasn't been touched in 1-2 months a bit jarring.
 - validation for the avatar edit modal needs implementation.
 - newer HTML elements need styling.
+- Card deletion needs correcting. Notes in index.js, upon form submit returning a 400 error but the card is removed upon reload?
