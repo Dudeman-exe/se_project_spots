@@ -201,6 +201,10 @@ function handleDeleteSubmit(evt) {
     .catch(console.error);
 }
 
+function handleLike(evt, id) {
+  evt.target.classList.toggle("card__like-btn_active");
+}
+
 //Instantiated API Class
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -236,8 +240,8 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  cardLikeBtnEl.addEventListener("click", () => {
-    cardLikeBtnEl.classList.toggle("card__like-btn_active");
+  cardLikeBtnEl.addEventListener("click", (evt) => {
+    handleLike(data._id);
   });
 
   cardDeleteBtnEl.addEventListener("click", (evt) => {
