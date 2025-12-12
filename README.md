@@ -13,3 +13,4 @@
 - The edit avatar button and modal need validation and functionality. Some elements related still need selectors in index.js.
 - Working on cleaner code, found starting project 9 that going through the old code which hasn't been touched in 1-2 months a bit jarring.
 - validation for the avatar edit modal needs implementation.
+- newer HTML elements need styling.

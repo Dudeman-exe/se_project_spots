@@ -78,12 +78,16 @@ const previewCaptionEl = previewModal.querySelector(".modal__caption");
 // Delete Modal queries
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteForm = deleteModal.querySelector(".modal__form");
 
 // Card queries
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+// Card Variables
+let selectedCard, selectedCardId;
 
 // Open/Close Modal
 function openModal(modal) {
@@ -180,6 +184,20 @@ function handleAvatarSubmit(evt) {
   closeModal(avatarEditForm);
 }
 
+function handleDeleteCard(cardEl, cardId) {
+  selectedCard = cardEl;
+  selectedCardId = cardId;
+  openModal(deleteModal);
+}
+
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard()
+    .then(() => {})
+    .catch(console.error);
+}
+
 //Instantiated API Class
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -208,19 +226,19 @@ function getCardElement(data) {
   let cardEl = cardTemplate.cloneNode(true);
   const cardTitleEl = cardEl.querySelector(".card__title");
   const cardImageEl = cardEl.querySelector(".card__image");
+  const cardDeleteBtnEl = cardEl.querySelector(".card__delete-btn");
+  const cardLikeBtnEl = cardEl.querySelector(".card__like-btn");
 
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  const cardLikeBtnEl = cardEl.querySelector(".card__like-btn");
   cardLikeBtnEl.addEventListener("click", () => {
     cardLikeBtnEl.classList.toggle("card__like-btn_active");
   });
 
-  const cardDeleteBtnEl = cardEl.querySelector(".card__delete-btn");
-  cardDeleteBtnEl.addEventListener("click", () => {
-    openModal(deleteModal);
+  cardDeleteBtnEl.addEventListener("click", (evt) => {
+    handleDeleteCard(cardEl, data._id);
   });
 
   cardImageEl.addEventListener("click", () => {
