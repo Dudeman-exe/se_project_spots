@@ -5,6 +5,7 @@ import {
   settings,
   disableButton,
 } from "../scripts/validation.js";
+import { setBtnText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 const initialCards = [
@@ -147,7 +148,7 @@ function handleOverlayClick(evt) {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  submitBtn.textContent = "Saving...";
+  setBtnText(submitBtn, true, "Save", "Saving...");
   api
     .editUserInfo({
       name: editProfileNameInput.value,
@@ -160,7 +161,7 @@ function handleEditProfileSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      submitBtn.textContent = "Save";
+      setBtnText(submitBtn, false, "Save", "Saving...");
     });
 }
 
@@ -183,7 +184,7 @@ function handleAddCardSubmit(evt) {
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  submitBtn.textContent = "Saving...";
+  setBtnText(submitBtn, true, "Save", "Saving...");
   api
     .editAvatarImg({ avatar: avatarSrcInput.value })
     .then((data) => {
@@ -191,7 +192,7 @@ function handleAvatarSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      submitBtn.textContent = "Save";
+      setBtnText(submitBtn, false, "Save", "Saving...");
     });
   closeModal(avatarEditForm);
 }
@@ -205,7 +206,7 @@ function handleDeleteCard(cardEl, cardId) {
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-  submitBtn.textContent = "Deleting...";
+  setBtnText(submitBtn, true, "Delete", "Deleting...");
   api
     .deleteCard(selectedCardId)
     .then(() => {
@@ -214,7 +215,7 @@ function handleDeleteSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      submitBtn.textContent = "Delete";
+      setBtnText(submitBtn, false, "Delete", "Deleting...");
     });
   closeModal(deleteModal);
 }
