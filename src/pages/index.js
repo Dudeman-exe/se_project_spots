@@ -144,20 +144,25 @@ function handleEditProfileSubmit(evt) {
     });
 }
 
-// use api.addNewCard
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const submitBtn = evt.submitter;
-
-  const cardElement = getCardElement({
-    name: newPostCaptionInput.value,
-    link: newPostImageLinkInput.value,
-  });
-  cardsList.prepend(cardElement);
-  const newPostSubmitBtn = newPostModal.querySelector(".modal__btn");
-  closeModal(newPostModal);
-  evt.target.reset();
-  disableButton(newPostSubmitBtn, settings);
+  setBtnText(submitBtn, true, "Save", "Saving...");
+  api
+    .addNewCard({
+      name: newPostCaptionInput.value,
+      link: newPostImageLinkInput.value,
+    })
+    .then((newCard) => {
+      cardsList.prepend(getCardElement(newCard));
+    })
+    .catch(console.error)
+    .finally(
+      setBtnText(submitBtn, false, "Save", "Saving..."),
+      closeModal(newPostModal),
+      evt.target.reset(),
+      disableButton(submitBtn, settings)
+    );
 }
 
 function handleAvatarSubmit(evt) {
@@ -189,7 +194,6 @@ function handleDeleteSubmit(evt) {
   api
     .deleteCard(selectedCardId)
     .then(() => {
-      // remove card from DOM
       selectedCard.remove();
     })
     .catch(console.error)
