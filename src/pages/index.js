@@ -201,8 +201,15 @@ function handleDeleteSubmit(evt) {
     .catch(console.error);
 }
 
+// fix this handler
 function handleLike(evt, id) {
-  evt.target.classList.toggle("card__like-btn_active");
+  const isLiked = cardEl ? data._id : data._id;
+  api
+    .handleLikeStatus(evt, data._id)
+    .then(() => {
+      /*evt.target.classList.toggle("card__like-btn_active");*/
+    })
+    .catch(console.error);
 }
 
 //Instantiated API Class
@@ -240,8 +247,10 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  // keep active likes on DOM
+
   cardLikeBtnEl.addEventListener("click", (evt) => {
-    handleLike(data._id);
+    handleLike(evt, data._id);
   });
 
   cardDeleteBtnEl.addEventListener("click", (evt) => {
