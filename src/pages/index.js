@@ -146,6 +146,8 @@ function handleOverlayClick(evt) {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  submitBtn.textContent = "Saving...";
   api
     .editUserInfo({
       name: editProfileNameInput.value,
@@ -156,11 +158,16 @@ function handleEditProfileSubmit(evt) {
       profileDescriptionEl.textContent = data.about;
       closeModal(editProfileModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitBtn.textContent = "Save";
+    });
 }
 
+// use api.addNewCard
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
 
   const cardElement = getCardElement({
     name: newPostCaptionInput.value,
@@ -175,12 +182,17 @@ function handleAddCardSubmit(evt) {
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  submitBtn.textContent = "Saving...";
   api
     .editAvatarImg({ avatar: avatarSrcInput.value })
     .then((data) => {
       avatarImgEl.src = data.avatar;
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitBtn.textContent = "Save";
+    });
   closeModal(avatarEditForm);
 }
 
@@ -192,13 +204,19 @@ function handleDeleteCard(cardEl, cardId) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  submitBtn.textContent = "Deleting...";
   api
     .deleteCard(selectedCardId)
     .then(() => {
       // remove card from DOM
-      closeModal(deleteModal);
+      selectedCard.remove();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitBtn.textContent = "Delete";
+    });
+  closeModal(deleteModal);
 }
 
 // fix this handler
