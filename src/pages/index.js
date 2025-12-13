@@ -1,3 +1,4 @@
+// Imports
 import "./index.css";
 import {
   resetValidation,
@@ -8,36 +9,14 @@ import {
 import { setBtnText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//Instantiated API Class
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "46747406-c2b0-48b7-b5f8-07dbde211dbd",
+    "Content-Type": "application/json",
   },
-  {
-    name: "5-0 grind",
-    link: "https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-  {
-    name: "Mise en place",
-    link: "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-  {
-    name: "Rock Concert",
-    link: "https://images.unsplash.com/photo-1692271931628-adc2b16670dd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-  {
-    name: "Dungeons and Dragons session",
-    link: "https://images.unsplash.com/photo-1549056572-75914d5d5fd4?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-  {
-    name: "Gaming PC setup",
-    link: "https://images.unsplash.com/photo-1626218174358-7769486c4b79?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-  {
-    name: "Mountain Hiking",
-    link: "https://images.unsplash.com/photo-1547203928-d8c7cc83e56f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
-  },
-];
+});
 
 // Profile Edit queries
 const profileEditBtn = document.querySelector(".profile__edit-btn");
@@ -157,11 +136,11 @@ function handleEditProfileSubmit(evt) {
     .then((data) => {
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
-      closeModal(editProfileModal);
     })
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Save", "Saving...");
+      closeModal(editProfileModal);
     });
 }
 
@@ -193,8 +172,8 @@ function handleAvatarSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Save", "Saving...");
+      closeModal(avatarEditForm);
     });
-  closeModal(avatarEditForm);
 }
 
 function handleDeleteCard(cardEl, cardId) {
@@ -216,8 +195,8 @@ function handleDeleteSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Delete", "Deleting...");
+      closeModal(deleteModal);
     });
-  closeModal(deleteModal);
 }
 
 // fix this handler
@@ -230,15 +209,6 @@ function handleLike(evt, id) {
     })
     .catch(console.error);
 }
-
-//Instantiated API Class
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "46747406-c2b0-48b7-b5f8-07dbde211dbd",
-    "Content-Type": "application/json",
-  },
-});
 
 api
   .getAppInfo()
