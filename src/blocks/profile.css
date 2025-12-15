@@ -129,7 +129,12 @@
   }
 
   .profile__avatar-btn {
+    height: 23.340126037597656px;
+    width: 23.340126037597656px;
     visibility: visible;
+    border-radius: 6px;
+    bottom: 4.66px;
+    right: 4.66px;
   }
 
   .profile__avatar-btn::after {
