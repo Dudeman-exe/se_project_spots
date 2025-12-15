@@ -10,8 +10,7 @@
 
 ### Improvements to be made:
 
-- The edit avatar button and modal need validation and functionality. Some elements related still need selectors in index.js.
-- Working on cleaner code, found starting project 9 that going through the old code which hasn't been touched in 1-2 months a bit jarring.
+- The edit avatar button and modal need validation and functionality.
 - validation for the avatar edit modal needs implementation.
 - newer HTML elements need styling.
-- Card deletion needs correcting. Notes in index.js, upon form submit returning a 400 error but the card is removed upon reload?
+- Keep the active Likes on the DOM

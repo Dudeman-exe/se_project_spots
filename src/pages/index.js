@@ -203,13 +203,12 @@ function handleDeleteSubmit(evt) {
     });
 }
 
-// fix this handler
-function handleLike(evt, id) {
-  const isLiked = cardEl ? data._id : data._id;
+function handleLike(evt, data) {
+  const isLiked = data.isLiked;
   api
-    .handleLikeStatus(evt, data._id)
+    .handleLikeStatus(data._id, isLiked)
     .then(() => {
-      /*evt.target.classList.toggle("card__like-btn_active");*/
+      evt.target.classList.toggle("card__like-btn_active");
     })
     .catch(console.error);
 }
@@ -240,10 +239,8 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  // keep active likes on DOM
-
   cardLikeBtnEl.addEventListener("click", (evt) => {
-    handleLike(evt, data._id);
+    handleLike(evt, data);
   });
 
   cardDeleteBtnEl.addEventListener("click", (evt) => {

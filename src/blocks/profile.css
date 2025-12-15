@@ -12,17 +12,20 @@
   height: 190px;
   width: 190px;
   border-radius: 8px;
+  object-fit: cover;
 }
 
-/* More styles to manage for the profile avatar edit btn */
-
 .profile__avatar-container {
+  height: 190px;
+  width: 190px;
+  border-radius: 8px;
   position: relative;
   margin-right: 20px;
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
+  opacity: 40%;
 }
 
 .profile__avatar-btn {
@@ -111,6 +114,18 @@
     height: 80px;
     width: 80px;
     margin-bottom: 12px;
+  }
+
+  .profile__avatar-container {
+    margin-right: 0px;
+    height: 80px;
+    width: 80px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .profile__avatar-btn {
+    border-radius: 8px;
   }
 
   .profile__avatar-btn {
