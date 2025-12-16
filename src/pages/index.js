@@ -59,6 +59,9 @@ const previewCaptionEl = previewModal.querySelector(".modal__caption");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const deleteForm = deleteModal.querySelector(".modal__form");
+const deleteCancelBtn = deleteForm.querySelector(
+  ".modal__btn_type_cancel-delete"
+);
 
 // Card queries
 const cardTemplate = document
@@ -108,6 +111,10 @@ editProfileCloseBtn.addEventListener("click", function () {
 
 newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
+});
+
+deleteCancelBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
 });
 
 // Handlers
