@@ -143,11 +143,11 @@ function handleEditProfileSubmit(evt) {
     .then((data) => {
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
+      closeModal(editProfileModal);
     })
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Save", "Saving...");
-      closeModal(editProfileModal);
     });
 }
 
@@ -161,15 +161,13 @@ function handleAddCardSubmit(evt) {
       link: newPostImageLinkInput.value,
     })
     .then((newCard) => {
-      cardsList.prepend(getCardElement(newCard));
+      cardsList.prepend(getCardElement(newCard)),
+        closeModal(newPostModal),
+        evt.target.reset(),
+        disableButton(submitBtn, settings);
     })
     .catch(console.error)
-    .finally(
-      setBtnText(submitBtn, false, "Save", "Saving..."),
-      closeModal(newPostModal),
-      evt.target.reset(),
-      disableButton(submitBtn, settings)
-    );
+    .finally(setBtnText(submitBtn, false, "Save", "Saving..."));
 }
 
 function handleAvatarSubmit(evt) {
@@ -180,11 +178,11 @@ function handleAvatarSubmit(evt) {
     .editAvatarImg({ avatar: avatarSrcInput.value })
     .then((data) => {
       avatarImgEl.src = data.avatar;
+      closeModal(avatarEditForm);
     })
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Save", "Saving...");
-      closeModal(avatarEditForm);
     });
 }
 
@@ -202,11 +200,11 @@ function handleDeleteSubmit(evt) {
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
+      closeModal(deleteModal);
     })
     .catch(console.error)
     .finally(() => {
       setBtnText(submitBtn, false, "Delete", "Deleting...");
-      closeModal(deleteModal);
     });
 }
 
@@ -214,7 +212,8 @@ function handleLike(evt, data) {
   const isLiked = data.isLiked;
   api
     .handleLikeStatus(data._id, isLiked)
-    .then(() => {
+    .then((updatedCard) => {
+      data.isLiked = updatedCard.isLiked;
       evt.target.classList.toggle("card__like-btn_active");
     })
     .catch(console.error);
