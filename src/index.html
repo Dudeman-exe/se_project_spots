@@ -6,36 +6,51 @@
     <meta name="description" content="Spots social media page project" />
     <meta name="author" content="Sean Semyck" />
     <meta name="keywords" content="Spots, Project, Social Media" />
-    <link rel="stylesheet" type="text/css" href="./pages/index.css" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spot logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="./images/avatar.jpg"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/wht-pencil-icon.svg')%>"
+                alt="Edit Icon"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Bessie Coleman"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__title">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
               <img
-                src="./images/edit-btn-icon.svg"
+                src="<%=require('./images/edit-btn-icon.svg')%>"
                 alt="pencil icon"
                 class="profile__edit-btn-icon"
               />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/addition-icon.svg" alt="Addition icon" /> New
-            Post
+            <img
+              src="<%=require('./images/addition-icon.svg')%>"
+              alt="Addition icon"
+            />
+            New Post
           </button>
         </section>
         <section class="cards page__section">
@@ -71,7 +86,7 @@
             aria-label="Close modal"
             class="modal__close-btn"
           >
-            <img src="./images/close-btn.svg" alt="Closing X" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
           </button>
           <h2 class="modal__title">Edit profile</h2>
           <form class="modal__form">
@@ -104,7 +119,7 @@
                 class="modal__error"
               ></span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button type="submit" class="modal__btn">Save</button>
           </form>
         </div>
       </div>
@@ -115,7 +130,7 @@
             aria-label="Close modal"
             class="modal__close-btn"
           >
-            <img src="./images/close-btn.svg" alt="Closing X" />
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
           </button>
           <h2 class="modal__title">New post</h2>
           <form class="modal__form">
@@ -143,7 +158,7 @@
               />
               <span id="image-caption-input-error" class="modal__error"></span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button type="submit" class="modal__btn">Save</button>
           </form>
         </div>
       </div>
@@ -154,14 +169,70 @@
             aria-label="Close modal"
             class="modal__close-btn modal__close-btn_type_preview"
           >
-            <img src="./images/close-btn-white.svg" alt="Close button" />
+            <img
+              src="<%=require('./images/close-btn-white.svg')%>"
+              alt="Close button"
+            />
           </button>
           <img src="#" alt="" class="modal__image" />
           <p class="modal__caption"></p>
         </div>
       </div>
+
+      <div class="modal" id="avatar-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            aria-label="Close modal"
+            class="modal__close-btn"
+          >
+            <img src="<%=require('./images/close-btn.svg')%>" alt="Closing X" />
+          </button>
+          <h3 class="modal__title">Edit profile Avatar</h3>
+          <form class="modal__form" id="edit-avatar-form">
+            <label for="profile-avatar-input" class="modal__label">
+              Profile Picture
+              <input
+                id="profile-avatar-input"
+                type="url"
+                class="modal__input"
+                placeholder="Avatar goes here"
+                required
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__btn">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" id="delete-modal">
+        <div class="modal__container">
+          <button
+            type="button"
+            aria-label="Close modal"
+            class="modal__close-btn modal__close-btn_type_delete"
+          >
+            <img
+              src="<%=require('./images/close-btn-white.svg')%>"
+              alt="Closing X"
+            />
+          </button>
+          <h3 class="modal__title">
+            Are you sure you want to delete this image?
+          </h3>
+          <form class="modal__form modal__form_deletion" id="deletion-form">
+            <button type="submit" class="modal__btn modal__btn_type_delete">
+              Delete
+            </button>
+            <button
+              type="button"
+              class="modal__btn modal__btn_type_cancel-delete"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    <script defer src="./scripts/index.js"></script>
-    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>

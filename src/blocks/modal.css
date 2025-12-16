@@ -83,6 +83,12 @@
   opacity: 1;
 }
 
+.modal__close-btn_type_delete {
+  top: 0;
+  right: -52px;
+  background-color: transparent;
+}
+
 .modal__close-btn:hover {
   opacity: 1;
   cursor: pointer;
@@ -96,6 +102,17 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+}
+
+.modal__form_deletion {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal__form_deletion .modal__btn {
+  margin-right: 0px;
 }
 
 .modal__label {
@@ -129,14 +146,13 @@
   border-radius: 8px;
 }
 
-/* Style from Figma */
 .modal__error {
   display: block;
   color: #ff0000b2;
   margin-top: 8px;
 }
 
-.modal__submit-btn {
+.modal__btn {
   cursor: pointer;
   border-radius: 8px;
   margin-right: auto;
@@ -145,18 +161,38 @@
   max-width: 156px;
   color: #fcf5e5;
   background-color: #212121;
-  opacity: 0.8;
+  opacity: 1;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal__submit-btn:hover {
-  opacity: 1;
+.modal__btn_type_delete {
+  background-color: #ff6565;
+  color: #212121;
+  border: none;
+}
+
+.modal__btn_type_delete:hover {
+  background-color: #ff3333;
   cursor: pointer;
 }
 
-.modal__submit-btn_state_disabled {
+.modal__btn_type_cancel-delete {
+  background-color: #fff;
+  color: #212121;
+  border: 1px solid #212121;
+}
+
+.modal__btn_type_cancel-delete:hover {
   background-color: #212121;
-  opacity: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal__btn:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
@@ -182,7 +218,7 @@
     font-size: 16px;
   }
 
-  .modal__submit-btn {
+  .modal__btn {
     margin: 0;
     max-width: 100%;
   }
