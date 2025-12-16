@@ -144,6 +144,7 @@ function handleEditProfileSubmit(evt) {
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
       closeModal(editProfileModal);
+      disableButton(modalSubmitBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
@@ -179,6 +180,7 @@ function handleAvatarSubmit(evt) {
     .then((data) => {
       avatarImgEl.src = data.avatar;
       closeModal(avatarEditForm);
+      disableButton(avatarModalSubmitBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
@@ -212,8 +214,7 @@ function handleLike(evt, data) {
   const isLiked = data.isLiked;
   api
     .handleLikeStatus(data._id, isLiked)
-    .then((updatedCard) => {
-      data.isLiked = updatedCard.isLiked;
+    .then(() => {
       evt.target.classList.toggle("card__like-btn_active");
     })
     .catch(console.error);
@@ -235,7 +236,7 @@ api
   });
 
 function getCardElement(data) {
-  let cardEl = cardTemplate.cloneNode(true);
+  const cardEl = cardTemplate.cloneNode(true);
   const cardTitleEl = cardEl.querySelector(".card__title");
   const cardImageEl = cardEl.querySelector(".card__image");
   const cardDeleteBtnEl = cardEl.querySelector(".card__delete-btn");
@@ -245,11 +246,15 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  if (data.isLiked) {
+    cardLikeBtnEl.classList.add("card__like-btn_active");
+  }
+
   cardLikeBtnEl.addEventListener("click", (evt) => {
     handleLike(evt, data);
   });
 
-  cardDeleteBtnEl.addEventListener("click", (evt) => {
+  cardDeleteBtnEl.addEventListener("click", () => {
     handleDeleteCard(cardEl, data._id);
   });
 
